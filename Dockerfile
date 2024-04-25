@@ -1,11 +1,7 @@
-FROM python:3.9-slim
-WORKDIR /app
+FROM node:lts-alpine3.19
+USER node
+WORKDIR /app-money
+COPY . .
+EXPOSE 3000
 
-ARG APP_NAME=app550231.py
-
-ENV PYTHONUNBUFFERED=1
-ENV APP_NAME=${APP_NAME}
-
-COPY ${APP_NAME} .
-
-CMD python ${APP_NAME}
+CMD ["node", "app.js"]
