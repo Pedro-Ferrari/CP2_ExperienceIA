@@ -1,11 +1,11 @@
-FROM tomcat:10
+FROM python:3.9-slim
+WORKDIR /app
 
-COPY DimMoneyApp550231.war /usr/local/tomcat/webapps/
+ARG APP_NAME=app550231.py
 
-EXPOSE 8080
+ENV PYTHONUNBUFFERED=1
+ENV APP_NAME=${APP_NAME}
 
-WORKDIR /usr/local/tomcat/webapps
+COPY ${APP_NAME} .
 
-VOLUME ["/usr/local/tomcat/webapps"]
-
-CMD ["catalina.sh", "run"]
+CMD python ${APP_NAME}
